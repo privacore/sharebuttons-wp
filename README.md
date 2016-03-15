@@ -5,6 +5,12 @@ When you add or embed standard sharing buttons using the normal embedding script
 
 To avoid the data collection from third parties Privacore created a simple plugin for the Privacore website to get sharing icons for twitter, Facebook and Linked in on the posts. 
 
+The plugin makes it possible to add meta data for sharing by adding a field group on pages and posts
 
+Define image to be used  
+Set individual title/description for pages/posts and each sharing button  
+Add txt field for twitter title 
+Add txt field for linked in title   
+Add txt field for facebook title
 
 
