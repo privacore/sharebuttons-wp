@@ -1,0 +1,26 @@
+/** Admin Styles **/
+/***** Admin Fields Styles *****/
+table.pssbFields {
+    width: 100%;
+}
+
+input#pssbUploadImage {
+    width: 60%;
+}
+
+div.pssbSocialButtons {
+    text-align: left;
+}
+
+/***** Admin Errors and Notices ******/
+div.field_error{
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+    padding: 5px 7px;
+    width: 93%;
+}
+div.pssb-error-notice{
+    background-color: #f2dede;
+    color: #a94442;
+}
