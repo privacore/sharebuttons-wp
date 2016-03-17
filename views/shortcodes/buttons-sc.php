@@ -6,6 +6,7 @@
         <img class="alignnone wp-image-802" src="<?php echo $plugin_url; ?>assets/images/TwitterLogo_50.png"
              alt="Share this post on twitter"/></a>
     <!-- End Twitter Button -->
+
     <!-- LinkedIn Button -->
     <a class="pssbButton"
        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=<?php echo $post_url; ?>&amp;title=<?php echo $linkedin_title; ?>&amp;summary=<?php echo urlencode($linkedin_summary); ?>&amp;source=<?php echo get_site_url(); ?>"
