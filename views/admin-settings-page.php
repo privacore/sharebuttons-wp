@@ -7,9 +7,15 @@
         <?php do_settings_sections('privacore-ssb-settings-group'); ?>
         <table class="form-table">
             <tr valign="top">
-                <th scope="row"><?php _e('Enable auto adding', 'privacore-ssb'); ?></th>
+                <th scope="row"><?php _e('Default auto adding', 'privacore-ssb'); ?></th>
                 <td><input type="checkbox" name="pssb_display_auto"
                            value="1" <?php echo esc_attr(get_option('pssb_display_auto')) == 1 ? 'checked' : ''; ?> />
+                </td>
+            </tr>
+            <tr valign="top" class="pssbSettingsInfoRow">
+                <td colspan="2">
+                    <span class="pssbSettingsInfoMessage">
+                        <?php _e('Note: If option above is checked by default "Show SSB Buttons on page" will be selected and SSB buttons will automatically displayed after content on every post, page or custom post type.', 'privacore-ssb'); ?></span>
                 </td>
             </tr>
         </table>
@@ -21,15 +27,11 @@
     <!-- Info Section -->
     <div class="pssbInfoSection">
         <h2 class="title"><?php _e('Privacore SSB information', 'privacore-ssb'); ?></h2>
-
+        <p><?php _e('If you need to add manually SSB buttons to your post, page or custom post type use shortcode placed below.', 'privacore-ssb'); ?></p>
         <p>
-            <!-- TODO: Add description how to use plugin -->
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
+           <code>
+               [privacore-ssb-sc]
+           </code>
         </p>
     </div>
     <!-- End Info Section -->

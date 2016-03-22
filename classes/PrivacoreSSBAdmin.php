@@ -19,7 +19,8 @@ if (!class_exists('PrivacoreSSBAdmin')) {
             'pssb_twitter_text',
             'pssb_linkedin_title',
             'pssb_linkedin_description',
-            'pssb_image'
+            'pssb_image',
+            'pssb_show_on_page'
         );
 
         public function __construct()
@@ -66,9 +67,9 @@ if (!class_exists('PrivacoreSSBAdmin')) {
             if (is_admin()) {
                 wp_enqueue_media();
 
-                wp_enqueue_style('pssb-admin-style', plugin_dir_url( dirname(__FILE__ )).'assets/styles/admin-pssb.css');
+                wp_enqueue_style('pssb-admin-style', plugin_dir_url(dirname(__FILE__)) . 'assets/styles/admin-pssb.css');
 
-                wp_enqueue_script('pssb-admin-script', plugin_dir_url( dirname(__FILE__ )).'assets/js/admin-pssb.js', array('jquery','media-upload'),'1.0', true);
+                wp_enqueue_script('pssb-admin-script', plugin_dir_url(dirname(__FILE__)) . 'assets/js/admin-pssb.js', array('jquery', 'media-upload'), '1.0', true);
             }
         }
 
@@ -94,6 +95,12 @@ if (!class_exists('PrivacoreSSBAdmin')) {
             //get all post meta fields
             $postMetaFields = get_post_meta($post->ID);
 
+            //If "show on page" option is not set get default plugin setting
+            $isAutoOptionEnabled = get_option('pssb_display_auto');
+            if (!isset($postMetaFields['pssb_show_on_page'])) {
+                $postMetaFields['pssb_show_on_page'][0] = $isAutoOptionEnabled;
+            }
+
             //Add Privacore SSB fields data to form
             foreach ($postMetaFields as $pm_key => $pm_value) {
                 if (in_array($pm_key, $this->_formFields)) {
@@ -101,7 +108,7 @@ if (!class_exists('PrivacoreSSBAdmin')) {
                 }
             }
 
-          echo $this->_loadView('ssb-meta-box-fields', $data);
+            echo $this->_loadView('ssb-meta-box-fields', $data);
         }
 
         /**
@@ -119,7 +126,6 @@ if (!class_exists('PrivacoreSSBAdmin')) {
             //Verify nonce
             if (!wp_verify_nonce($_POST['pssb_nonce'], 'pssb-nonce'))
                 return $post_id;
-
 
             // Check permissions
             if ('page' == $_POST['post_type']) {
@@ -182,6 +188,18 @@ if (!class_exists('PrivacoreSSBAdmin')) {
                 }
             }
 
+            if (isset($postData['pssb_show_on_page'])) {
+                $pssbShowOnPageValue = 1;
+                //Set value to 0, if field is set, but value is not 1
+                if ($postData['pssb_show_on_page'] != 1) {
+                    $pssbShowOnPageValue = 0;
+                }
+            } else {
+                //Set value 0 if checkbox is not checked
+                $pssbShowOnPageValue = 0;
+            }
+            update_post_meta($post_id, 'pssb_show_on_page', $pssbShowOnPageValue);
+
         }
 
         /**
@@ -204,7 +222,7 @@ if (!class_exists('PrivacoreSSBAdmin')) {
          */
         public function adminPluginOptionsPage()
         {
-           echo $this->_loadView('admin-settings-page');
+                echo $this->_loadView('admin-settings-page');
         }
     }
 }

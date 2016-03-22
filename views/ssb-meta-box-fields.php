@@ -1,6 +1,18 @@
 <!-- Hidden nonce field -->
 <input type="hidden" value="<?php echo $nonce; ?>" name="pssb_nonce"/>
 <table class="pssbFields">
+    <!-- Show/Hide buttons from page field -->
+    <tr class="form-field" valign="middle">
+        <td scope="row"> <label for="pssbShowButtons"><?php _e('Show SSB Buttons on page', 'privacore-ssb'); ?></label></td>
+        <td>
+            <input type="checkbox" name="pssb_show_on_page" value="1" <?php echo ($pssb_show_on_page==1)?'checked="checked"' :''; ?> />
+        </td>
+    </tr>
+    <tr valign="middle">
+        <td colspan="2">&nbsp;</td>
+    </tr>
+    <!-- End Show/Hide buttons from page field -->
+
     <!-- SSB Image -->
     <tr class="form-field" valign="top">
         <td scope="row">
