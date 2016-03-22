@@ -1,4 +1,19 @@
 /** Admin Styles **/
+
+code{
+    background-color: #FFFFFF;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    display: block;
+    font-size: 13px;
+    line-height: 1.42857;
+    margin: 0 0 10px;
+    padding: 9.5px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
 /***** Admin Fields Styles *****/
 table.pssbFields {
     width: 100%;
@@ -23,4 +38,13 @@ div.field_error{
 div.pssb-error-notice{
     background-color: #f2dede;
     color: #a94442;
+}
+/*** Admin Settings Page ***/
+table tr.pssbSettingsInfoRow td{
+    padding: 0px;
+}
+span.pssbSettingsInfoMessage{
+    padding: 0px;
+    font-size: 12px;
+    font-style: italic;
 }
