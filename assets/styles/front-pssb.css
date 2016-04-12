@@ -6,4 +6,8 @@ div.pssbSocialButtons a.pssbButton {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
     margin-right: 5px;
+	width: 41px;
+}
+div.pssbSocialButtons a.pssbButton img{
+	max-width: 100%;
 }
