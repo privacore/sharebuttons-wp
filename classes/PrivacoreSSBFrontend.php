@@ -36,14 +36,31 @@ if (!class_exists('PrivacoreSSBFrontend')) {
         /**
          * Generate buttons data
          *
+         * @param bool $isShortcode
          * @return array
          */
-        private function _pssbButtonsData()
+        private function _pssbButtonsData($isShortcode = false)
         {
             global $post;
-            $postID = $post->ID;
+
             $data = array();
 
+            //Make this check only if function is not called from shotcode function
+            if ($isShortcode != true) {
+                $displayOnPage = get_post_meta($post->ID, 'pssb_show_on_page', true);
+
+                if ($displayOnPage == '') {
+                    $isAutoOptionEnabled = get_option('pssb_display_auto');
+                    if ($isAutoOptionEnabled != 1) {
+                        $data['hide_on_page'] = true;
+                        return $data;
+                    }
+                } else if ($displayOnPage == 0) {
+                    $data['hide_on_page'] = true;
+                    return $data;
+                }
+            }
+            //  var_dump($displayOnPage);die;
             $excerpt = $this->getPostExcerptById($post->ID);
 
             $data['plugin_url'] = PSSB_PLUGIN_URL;
@@ -69,13 +86,18 @@ if (!class_exists('PrivacoreSSBFrontend')) {
 
         /**
          * Generate Social buttons view
+         *
          * @return string
          */
         private function _getRenderedView()
         {
             $data = $this->_pssbButtonsData();
+            if (isset($data['hide_on_page']) && $data['hide_on_page'] == true) {
+                return '';
+            } else {
+                return $this->_loadView('front-buttons', $data);
+            }
 
-            return $this->_loadView('front-buttons', $data);
 
         }
 
@@ -100,8 +122,7 @@ if (!class_exists('PrivacoreSSBFrontend')) {
          */
         public function pssbShortcode()
         {
-
-            $data = $this->_pssbButtonsData();
+            $data = $this->_pssbButtonsData(true);
 
             //use different view file for shortcode
             return $this->_loadView('shortcodes/buttons-sc', $data);
