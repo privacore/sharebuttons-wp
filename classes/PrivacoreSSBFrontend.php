@@ -48,7 +48,6 @@ if (!class_exists('PrivacoreSSBFrontend')) {
             //Make this check only if function is not called from shotcode function
             if ($isShortcode != true) {
                 $displayOnPage = get_post_meta($post->ID, 'pssb_show_on_page', true);
-
                 if ($displayOnPage == '') {
                     $isAutoOptionEnabled = get_option('pssb_display_auto');
                     if ($isAutoOptionEnabled != 1) {
@@ -124,8 +123,11 @@ if (!class_exists('PrivacoreSSBFrontend')) {
         {
             $data = $this->_pssbButtonsData(true);
 
-            //use different view file for shortcode
-            return $this->_loadView('shortcodes/buttons-sc', $data);
+            global $post;
+			$displayOnPage = get_post_meta($post->ID, 'pssb_show_on_page', true);
+             if ($displayOnPage == 1) {
+				return $this->_loadView('shortcodes/buttons-sc', $data);
+			}
         }
 
 
