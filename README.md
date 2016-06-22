@@ -13,4 +13,7 @@ Add txt field for twitter title
 Add txt field for linked in title   
 Add txt field for facebook title
 
+## Can I see the plugin used?
+Yes, you can visit a blog post on [www.privacore.com](https://www.privacore.com/2016/03/17/watch-privacore-speak-about-data-ethics-and-privacy-products/) to see the buttons in action.
+
 
