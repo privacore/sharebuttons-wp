@@ -122,7 +122,6 @@ if (!class_exists('PrivacoreSSBFrontend')) {
         public function pssbShortcode()
         {
             $data = $this->_pssbButtonsData(true);
-			print_r($data);
 			if($data['hide_on_page']==1){
 				//use different view file for shortcode
 				return $this->_loadView('shortcodes/buttons-sc', $data);
