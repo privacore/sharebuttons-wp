@@ -18,9 +18,8 @@ Add txt field for facebook title
  - Go to your WP admin - /wp-admin/plugin-install.php
  - Click "upload plugin" (at the top of the page)
  - Upload .zip file
- - and that should be it. 
+ - and that should be it.
 
 ## Can I see the plugin used?
 Yes, you can visit a blog post on [www.privacore.com](https://www.privacore.com/2016/03/17/watch-privacore-speak-about-data-ethics-and-privacy-products/) to see the buttons in action.
-
 
