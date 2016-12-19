@@ -25,4 +25,17 @@ Add txt field for facebook title
 Yes, you can visit a blog post on [https://www.privacore.com/2016/09/23/what-if-we-did-this-to-the-privacy-policy/) to see the buttons in action.
 
 
+# SSB Settings - Social Share Buttons for WP 
+
+## Default auto adding or Manual Shortcode usage
+In the settings page, you can set the Social Share Buttons to by default "Show SSB Buttons on page" and the SSB buttons will automatically displayed after content on every post, page or custom post type. If you don't wan to automatically place buttons on you page, then you can use the shortcode, and manually ad buttons.
+
+## Configure Social Share buttons buttons on a post in Wordpress
+With Privacore Shocial Share Buttons you can configure image, headlines and text for Facebook, LTwitter and Linked in shares.
+
+## Hide Social Share buttons buttons on a post in Wordpress
+Uncheck the "Show SSB Buttons on page", and the buttons will not be shown on the page.
+
+
+
 
