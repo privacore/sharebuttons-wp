@@ -76,9 +76,18 @@ if (!class_exists('PrivacoreSSBAdmin')) {
         /**
          * Add SSB Fields to WP Admin
          */
-        public function adminAddMetaBoxFields()
+        public function adminAddMetaBoxFields($post_type)
         {   //Create Privacore SSB metabox section
-            add_meta_box('privacore-ssb-meata-box', __('Privacore SSB', 'privacore-ssb'), array($this, 'renderSsbFields'), null, 'advanced', 'high');
+            $post_types = array('post', 'page');
+            if (in_array($post_type, $post_types)) {
+                add_meta_box(
+                    'privacore-ssb-meata-box',
+                    __('Privacore SSB', 'privacore-ssb'),
+                    array($this, 'renderSsbFields'),
+                    $post_type,
+                    'advanced', 'high'
+                );
+            }
         }
 
 
