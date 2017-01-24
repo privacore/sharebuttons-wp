@@ -81,6 +81,7 @@ if (!class_exists('PrivacoreSSBFrontend')) {
             $data['facebook_title'] = get_post_meta($post->ID, 'pssb_facebook_title', true) != '' ? get_post_meta($post->ID, 'pssb_facebook_title', true) : mb_substr(get_the_title($post->ID), 0, 100);
             $data['facebook_description'] = get_post_meta($post->ID, 'pssb_facebook_description', true) != '' ? get_post_meta($post->ID, 'pssb_facebook_description', true) : mb_substr($excerpt, 0, 301);
 
+            $data['hide_on_page'] = get_post_meta($post->ID, 'pssb_show_on_page', true);
             return $data;
         }
 
@@ -92,9 +93,7 @@ if (!class_exists('PrivacoreSSBFrontend')) {
         private function _getRenderedView()
         {
             $data = $this->_pssbButtonsData();
-            if (isset($data['hide_on_page']) && $data['hide_on_page'] == true) {
-                return '';
-            } else {
+			if($data['hide_on_page']==1){
                 return $this->_loadView('front-buttons', $data);
             }
 
@@ -123,9 +122,10 @@ if (!class_exists('PrivacoreSSBFrontend')) {
         public function pssbShortcode()
         {
             $data = $this->_pssbButtonsData(true);
-
-            //use different view file for shortcode
-            return $this->_loadView('shortcodes/buttons-sc', $data);
+			if($data['hide_on_page']==1){
+				//use different view file for shortcode
+				return $this->_loadView('shortcodes/buttons-sc', $data);
+			}
         }
 
 
