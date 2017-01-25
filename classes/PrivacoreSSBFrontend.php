@@ -49,18 +49,12 @@ if (!class_exists('PrivacoreSSBFrontend')) {
             if ($isShortcode != true) {
                 $displayOnPage = get_post_meta($post->ID, 'pssb_show_on_page', true);
 
-                if ($displayOnPage == '') {
-                    $isAutoOptionEnabled = get_option('pssb_display_auto');
-                    if ($isAutoOptionEnabled != 1) {
-                        $data['hide_on_page'] = true;
-                        return $data;
-                    }
-                } else if ($displayOnPage == 0) {
+                if ($displayOnPage == 0) {
                     $data['hide_on_page'] = true;
                     return $data;
                 }
             }
-            //  var_dump($displayOnPage);die;
+
             $excerpt = $this->getPostExcerptById($post->ID);
 
             $data['plugin_url'] = PSSB_PLUGIN_URL;
@@ -82,6 +76,7 @@ if (!class_exists('PrivacoreSSBFrontend')) {
             $data['facebook_description'] = get_post_meta($post->ID, 'pssb_facebook_description', true) != '' ? get_post_meta($post->ID, 'pssb_facebook_description', true) : mb_substr($excerpt, 0, 301);
 
             $data['hide_on_page'] = get_post_meta($post->ID, 'pssb_show_on_page', true);
+
             return $data;
         }
 
@@ -96,8 +91,6 @@ if (!class_exists('PrivacoreSSBFrontend')) {
 			if($data['hide_on_page']==1){
                 return $this->_loadView('front-buttons', $data);
             }
-
-
         }
 
         /**
@@ -107,11 +100,9 @@ if (!class_exists('PrivacoreSSBFrontend')) {
          */
         public function showButtonsPublic($content)
         {
-
-            if ((is_single() || is_page())) {
+            if (is_single()) {
                 $content .= $this->_getRenderedView();
             }
-
             return $content;
         }
 
