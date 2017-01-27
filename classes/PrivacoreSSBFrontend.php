@@ -22,6 +22,7 @@ if (!class_exists('PrivacoreSSBFrontend')) {
 
             if (esc_attr(get_option('pssb_display_auto')) == 1) {
                 add_filter('the_content', array($this, 'showButtonsPublic'));
+                add_action('wp_head', array($this, 'addMetaTwitterCards'));
             }
         }
 
@@ -31,6 +32,26 @@ if (!class_exists('PrivacoreSSBFrontend')) {
         public function enqueueScripts()
         {
             wp_enqueue_style('pssb-frontend-style', plugin_dir_url(dirname(__FILE__)) . 'assets/styles/front-pssb.css');
+        }
+        public function addMetaTwitterCards(){
+            global $post;
+
+            $description = get_post_meta($post->ID, 'pssb_twitter_text', true);
+            $title = get_post_meta($post->ID, 'pssb_twitter_title', true) != '' ? get_post_meta($post->ID, 'pssb_twitter_title', true) : mb_substr(get_the_title($post->ID), 0, 70);
+            $image = get_post_meta($post->ID, 'pssb_image', true);
+            $typeOfTwitterCard = get_post_meta($post->ID, 'pssb_twitter_card', true);
+            $twiterCard = 'summary';
+            if ($typeOfTwitterCard == 2) {
+                $twiterCard = 'summary_large_image';
+            }
+            if ($typeOfTwitterCard != 0) {
+                echo "\t<meta name='twitter:card' content='$twiterCard' />\n";
+                echo "\t<meta name='twitter:site' content='@privacore' />\n";
+                echo "\t<meta name='twitter:title' content='$title' />\n";
+                echo "\t<meta name='twitter:description' content='$description' />\n";
+                echo "\t<meta name='twitter:image' content='$image' />\n";
+            }
+
         }
 
         /**
@@ -51,6 +72,7 @@ if (!class_exists('PrivacoreSSBFrontend')) {
 
                 if ($displayOnPage == 0) {
                     $data['hide_on_page'] = true;
+
                     return $data;
                 }
             }
@@ -75,7 +97,7 @@ if (!class_exists('PrivacoreSSBFrontend')) {
             $data['facebook_title'] = get_post_meta($post->ID, 'pssb_facebook_title', true) != '' ? get_post_meta($post->ID, 'pssb_facebook_title', true) : mb_substr(get_the_title($post->ID), 0, 100);
             $data['facebook_description'] = get_post_meta($post->ID, 'pssb_facebook_description', true) != '' ? get_post_meta($post->ID, 'pssb_facebook_description', true) : mb_substr($excerpt, 0, 301);
 
-//           $data['hide_on_page'] = get_post_meta($post->ID, 'pssb_show_on_page', true);
+
 
             return $data;
         }
@@ -105,6 +127,9 @@ if (!class_exists('PrivacoreSSBFrontend')) {
             }
             return $content;
         }
+
+
+
 
         /**
          * Create Privacore SSB buttons shortcode

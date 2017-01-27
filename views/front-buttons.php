@@ -1,7 +1,7 @@
 <div class="pssbSocialButtons">
     <!-- Twitter Button -->
     <a class="pssbButton"
-       href="https://twitter.com/intent/tweet?text=<?php echo urlencode($twitter_text); ?>&amp;url=<?php echo $post_url; ?>"
+       href="https://twitter.com/intent/tweet?text=<?php echo urlencode($twitter_text); ?>&amp;url=<?php echo urlencode($post_url); ?>"
        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;">
         <img class="alignnone wp-image-802" src="<?php echo $plugin_url; ?>assets/images/TwitterLogo_50.png"
              alt="Share this post on twitter"/></a>

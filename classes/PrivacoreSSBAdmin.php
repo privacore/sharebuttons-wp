@@ -16,11 +16,13 @@ if (!class_exists('PrivacoreSSBAdmin')) {
             'pssb_facebook_title',
             'pssb_facebook_description',
             'pssb_facebook_description',
+            'pssb_twitter_title',
             'pssb_twitter_text',
             'pssb_linkedin_title',
             'pssb_linkedin_description',
             'pssb_image',
-            'pssb_show_on_page'
+            'pssb_show_on_page',
+            'pssb_twitter_card'
         );
 
         public function __construct()
@@ -172,6 +174,13 @@ if (!class_exists('PrivacoreSSBAdmin')) {
             }
 
             //Twitter field
+            if (isset($postData['pssb_twitter_title'])) {
+                if (mb_strlen(stripslashes($postData['pssb_twitter_title'])) <= 70) {
+                    update_post_meta($post_id, 'pssb_twitter_title', sanitize_text_field($postData['pssb_twitter_title']));
+                } else {
+                    $_SESSION['pssb_errors']['pssb_twitter_title_error'] = __('Twitter title length must be 70 symbols maximum.', 'privacore-ssb');
+                }
+            }
             if (isset($postData['pssb_twitter_text'])) {
                 if (mb_strlen(stripslashes($postData['pssb_twitter_text'])) <= 116) {
                     update_post_meta($post_id, 'pssb_twitter_text', sanitize_text_field($postData['pssb_twitter_text']));
@@ -207,7 +216,25 @@ if (!class_exists('PrivacoreSSBAdmin')) {
                 //Set value 0 if checkbox is not checked
                 $pssbShowOnPageValue = 0;
             }
+            if (isset($postData['pssb_twitter_card'])) {
+                $pssbTwitterCardValue = $postData['pssb_twitter_card'];
+                //Set value to 0, if field is set, but value is not 1
+                if ($postData['pssb_twitter_card'] = 0) {
+                    $pssbTwitterCardValue = 0;
+
+                }
+                if ($postData['pssb_twitter_card'] != 2 && $postData['pssb_twitter_card'] != 0) {
+                    $pssbTwitterCardValue = 1;
+                }
+                if ($postData['pssb_twitter_card'] != 1 && $postData['pssb_twitter_card'] != 0) {
+                    $pssbTwitterCardValue = 2;
+                }
+            } else {
+                //Set value 0 if checkbox is not checked
+                $pssbTwitterCardValue = 0;
+            }
             update_post_meta($post_id, 'pssb_show_on_page', $pssbShowOnPageValue);
+            update_post_meta($post_id, 'pssb_twitter_card', $pssbTwitterCardValue);
 
         }
 
