@@ -19,6 +19,10 @@ Add txt field for facebook title
  - Click "upload plugin" (at the top of the page)
  - Upload .zip file
  - and that should be it.
+ 
+## How does Sharebuttons work
+Take a look in the [wiki](https://github.com/privacore/sharebuttons-wp/wiki/Share-Buttons-without-tracking-for-WordPress---free-and-Open-Source)
+
 
 ## Can I see the plugin used?
 Yes, you can visit a blog post on [www.privacore.com](https://www.privacore.com/2016/03/17/watch-privacore-speak-about-data-ethics-and-privacy-products/) to see the buttons in action.
