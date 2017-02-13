@@ -7,6 +7,7 @@
     $(function () {
         //Call Select Share Image function
         pssbAdmin.selectSocialImage();
+        disableTwitterTitle();
     });
 
     /**
@@ -41,5 +42,27 @@
             }// ./end button exist check
         }
     };
-    
+    /**
+     * Disable twitter title input if checked normal card
+     */
+    function disableTwitterTitle() {
+        $(document).ready(function(){
+            var inputVal = $('input[name="pssb_twitter_card"]:checked').val();
+            if(inputVal === '0'){
+                $('#pssbTwitterTitle').prop("readonly", "readonly");
+            } else {
+                $('#pssbTwitterTitle').attr('required', 'required');
+            }
+            $('input[name="pssb_twitter_card"]').on('change', function() {
+                if ($(this).val() != '0') {
+                    $('#pssbTwitterTitle').removeProp("readonly").attr('required', 'required');
+                }
+                else {
+                    $('#pssbTwitterTitle').prop("readonly", "readonly").removeProp('required');
+
+                }
+            });
+        });
+
+    }
 })(jQuery.noConflict());

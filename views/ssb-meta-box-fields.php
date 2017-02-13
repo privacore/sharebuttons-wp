@@ -65,6 +65,19 @@
     <tr valign="middle">
         <td colspan="2"><h4><?php _e('Twitter SSB', 'privacore-ssb'); ?></h4></td>
     </tr>
+    <tr class="form-field" valign="middle">
+        <td scope="row">
+            <label for="pssbTwitterTitle"><?php _e('Twitter Title', 'privacore-ssb'); ?></label>
+        </td>
+        <td>
+            <input id="pssbTwitterTitle" type="text" name="pssb_twitter_title"
+                   value="<?php echo $pssb_twitter_title; ?>" maxlength="100"/>
+            <small><i><?php _e('Twitter title length must be 70 symbols maximum.', 'privacore-ssb'); ?></i></small>
+            <?php if (isset($pssb_twitter_title_error)): ?>
+                <div class="field_error"><?php echo $pssb_twitter_title_error; ?></div>
+            <?php endif; ?>
+        </td>
+    </tr>
     <tr class="form-field" valign="top">
         <td scope="row">
             <label for="pssTwitterText"><?php _e('Twitter Text', 'privacore-ssb'); ?></label>
@@ -72,10 +85,13 @@
         <td>
             <textarea id="pssb_twitter_text" name="pssb_twitter_text"
                       maxlength="116"><?php echo $pssb_twitter_text; ?></textarea>
-            <small><i><?php _e('Twitter text length must be 116 symbols maximum.', 'privacore-ssb'); ?></i></small>
+            <small><i><?php _e('Twitter text length must be 116 symbols maximum.', 'privacore-ssb'); ?></i></small><br>
             <?php if (isset($pssb_twitter_text_error)): ?>
                 <div class="field_error"><?php echo $pssb_twitter_text_error; ?></div>
             <?php endif; ?>
+            <label><input type="radio" name="pssb_twitter_card" value="0" <?php echo ($pssb_twitter_card==0)?'checked="checked"' :''; ?>>Normal</label><br>
+            <label><input type="radio" name="pssb_twitter_card" value="1" <?php echo ($pssb_twitter_card==1)?'checked="checked"' :''; ?>>Card</label><br>
+            <label><input type="radio" name="pssb_twitter_card" value="2" <?php echo ($pssb_twitter_card==2)?'checked="checked"' :''; ?>>Large Card</label><br>
         </td>
     </tr>
     <!-- End Twitter section -->
