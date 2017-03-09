@@ -1,11 +1,11 @@
 <?php
 
 /*
-Plugin Name: Privacore SSB
+Plugin Name: Privacore Social Share Buttons
 Plugin URI: https://www.privacore.com
-Description: Simple share buttons plugin.
-Version: 1.0
-Author: Miroslav Marinov // Orpheus.bg
+Description: Sharing buttons that doesn't track user behaviour.
+Version: 1.1
+Author: Privacore
 Author URI: https://www.privacore.com
 */
 
